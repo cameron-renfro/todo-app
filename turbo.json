@@ -1,0 +1,32 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "globalDependencies": [".nvmrc"],
+  "globalEnv": ["NODE_ENV"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "env": ["DATABASE_URL", "PORT"],
+      "outputs": ["dist/**"]
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {},
+    "typecheck": {
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "dependsOn": ["^build"]
+    },
+    "db:migrate": {
+      "cache": false,
+      "env": ["DATABASE_URL"]
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+}
