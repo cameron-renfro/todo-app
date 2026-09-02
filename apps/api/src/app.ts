@@ -1,8 +1,8 @@
 // src/app.ts
-import express from "express";
-import { pool } from "./db/index.ts";
+import express, { type Express } from "express";
+import { pool } from "./db/index.js";
 
-export function createApp() {
+export function createApp(): Express {
   const app = express();
   app.use(express.json());
 

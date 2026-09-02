@@ -1,6 +1,6 @@
-import { createApp } from "./app.ts";
-import { env } from "./config/env.ts";
-import { pool } from "./db/index.ts";
+import { createApp } from "./app.js";
+import { env } from "./config/env.js";
+import { pool } from "./db/index.js";
 import process from "node:process";
 
 const server = createApp().listen(env.PORT, () => {

@@ -3,6 +3,8 @@
   "compilerOptions": {
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "types": []
+    "types": [],
+    "declaration": true,
+    "declarationMap": true
   }
 }
