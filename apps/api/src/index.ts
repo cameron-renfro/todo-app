@@ -1,12 +1,14 @@
-import express from "express";
+import { createApp } from "./app.ts";
+import { env } from "./config/env.ts";
+import { pool } from "./db/index.ts";
+import process from "node:process";
 
-const app = express();
-const PORT = 3000;
-
-app.get("/", (req, res) => {
-  res.json("Hello World!");
+const server = createApp().listen(env.PORT, () => {
+  console.log(`API listening on http://localhost:${env.PORT}`);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+for (const signal of ["SIGTERM", "SIGINT"] as const) {
+  process.on(signal, () => {
+    server.close(() => void pool.end());
+  });
+}
